@@ -53,7 +53,13 @@ public class StartVidue extends Application {
         Tab tabOpretLager = new Tab("Opret lager");
         tabOpretLager.setContent(new OpretLagerVindue());
 
-        tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabFadLager, tabProduktLager);
+        Tab tabRegisterFadplacering = new Tab("Register fadplacering");
+        tabRegisterFadplacering.setContent(new RegisterFadplaceringVindue());
+
+        Tab tabRegisterPaafyldningAfFad = new Tab("Register påfyldning af fad");
+        tabRegisterPaafyldningAfFad.setContent(new RegisterPaafyldningAfFadVindue());
+
+        tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabRegisterFadplacering, tabRegisterPaafyldningAfFad, tabFadLager, tabProduktLager);
 
         pane.setCenter(tabPane);
     }
