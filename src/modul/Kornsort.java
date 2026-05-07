@@ -1,5 +1,6 @@
 package modul;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ public class Kornsort {
         this.beskrivelse = beskrivelse;
     }
 
-    public Maltbatch createMaltbatch() {
-        Maltbatch maltbatch = new Maltbatch()
+    public Maltbatch createMaltbatch(int batchNummer, LocalDate date, int mængdeKg) {
+        Maltbatch maltbatch = new Maltbatch(batchNummer,date,mængdeKg);
+        maltbatches.add(maltbatch);
+        return maltbatch;
     }
 
     public String getNavn() {
