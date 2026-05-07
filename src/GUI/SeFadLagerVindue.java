@@ -1,20 +1,13 @@
 package GUI;
 
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
-public class SeFadLagerVindue extends Stage {
+public class SeFadLagerVindue extends GridPane {
 
     public SeFadLagerVindue() {
-        this.setTitle("Se fad lager");
-        GridPane pane = new GridPane();
-        this.initContent(pane);
-
-        Scene scene = new Scene(pane, 600, 400);
-        this.setScene(scene);
+        this.initContent(this);
     }
 
     private void initContent(GridPane pane) {
@@ -26,6 +19,6 @@ public class SeFadLagerVindue extends Stage {
         Label lblTitle = new Label("Se fad lager");
         pane.add(lblTitle, 0, 0);
 
-        // TODO: Tilføj felter og funktioner her
+        // TODO: Tilfj felter og funktioner her
     }
 }

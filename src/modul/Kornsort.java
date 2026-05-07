@@ -10,17 +10,10 @@ public class Kornsort {
     private final String beskrivelse;
     private final List<Maltbatch> maltbatches = new ArrayList<>();
 
-
     public Kornsort(String navn, String ophav, String beskrivelse) {
         this.navn = navn;
         this.ophav = ophav;
         this.beskrivelse = beskrivelse;
-    }
-
-    public Maltbatch createMaltbatch(int batchNummer, LocalDate date, int mængdeKg) {
-        Maltbatch maltbatch = new Maltbatch(batchNummer,date,mængdeKg);
-        maltbatches.add(maltbatch);
-        return maltbatch;
     }
 
     public String getNavn() {
@@ -33,6 +26,16 @@ public class Kornsort {
 
     public String getBeskrivelse() {
         return beskrivelse;
+    }
+
+    public Maltbatch createMaltbatch(int batchNummer, LocalDate dato, int mængdeKg) {
+        Maltbatch maltbatch = new Maltbatch(batchNummer, dato, mængdeKg);
+        this.maltbatches.add(maltbatch);
+        return maltbatch;
+    }
+
+    public void removeMaltbatch(Maltbatch maltbatch) {
+        this.maltbatches.remove(maltbatch);
     }
 
     public List<Maltbatch> getMaltbatches() {

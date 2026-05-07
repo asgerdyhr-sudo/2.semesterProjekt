@@ -1,19 +1,12 @@
 package GUI;
 
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
-public class OpretLagerVindue extends Stage {
+public class OpretLagerVindue extends GridPane {
 
     public OpretLagerVindue() {
-        this.setTitle("Opret lager");
-        GridPane pane = new GridPane();
-        this.initContent(pane);
-
-        Scene scene = new Scene(pane, 400, 300);
-        this.setScene(scene);
+        this.initContent(this);
     }
 
     private void initContent(GridPane pane) {
@@ -22,7 +15,6 @@ public class OpretLagerVindue extends Stage {
         pane.setVgap(10);
         pane.setGridLinesVisible(false);
 
-        // TODO: Tilføj GUI-elementer og logik her
+        // TODO: Tilfj GUI-elementer og logik her
     }
 }
-

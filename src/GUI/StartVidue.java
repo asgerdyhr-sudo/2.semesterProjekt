@@ -4,9 +4,11 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -15,71 +17,44 @@ public class StartVidue extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Sall whiskey destilleri");
-        GridPane pane = new GridPane();
+        BorderPane pane = new BorderPane();
         initContent(pane);
 
-        Scene scene = new Scene(pane, 400, 300);
+        Scene scene = new Scene(pane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void initContent(GridPane pane) {
-        pane.setPadding(new Insets(20));
-        pane.setHgap(20);
-        pane.setVgap(15);
-        pane.setGridLinesVisible(false);
-        pane.setAlignment(Pos.CENTER);
-
-        // Overskrift
+    private void initContent(BorderPane pane) {
+        HBox topBar = new HBox();
+        topBar.setAlignment(Pos.CENTER);
+        topBar.setPadding(new Insets(10));
+        topBar.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;");
         Label lblTitel = new Label("Sall Whiskey Destilleri");
-        lblTitel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        pane.add(lblTitel, 0, 0);
+        lblTitel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        topBar.getChildren().add(lblTitel);
+        pane.setTop(topBar);
 
-        // Knapper
-        Button btnOpretDestillering = new Button("Opret destillering");
-        btnOpretDestillering.setMaxWidth(Double.MAX_VALUE);
-        pane.add(btnOpretDestillering, 0, 1);
+        TabPane tabPane = new TabPane();
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        Button btnOpretLager = new Button("Opret lager");
-        btnOpretLager.setMaxWidth(Double.MAX_VALUE);
-        pane.add(btnOpretLager, 0, 2);
+        Tab tabDestillering = new Tab("Opret destillering");
+        tabDestillering.setContent(new OpretDestilleringVindue());
 
-        Button btnOpretFad = new Button("Opret fad");
-        btnOpretFad.setMaxWidth(Double.MAX_VALUE);
-        pane.add(btnOpretFad, 0, 3);
+        Tab tabFadLager = new Tab("Se fad lager");
+        tabFadLager.setContent(new SeFadLagerVindue());
 
-        Button btnSeFadLager = new Button("Se fad lager");
-        btnSeFadLager.setMaxWidth(Double.MAX_VALUE);
-        pane.add(btnSeFadLager, 0, 4);
+        Tab tabProduktLager = new Tab("Se produkt lager");
+        tabProduktLager.setContent(new SeProduktLagerVindue());
 
-        Button btnSeProduktLager = new Button("Se produkt lager");
-        btnSeProduktLager.setMaxWidth(Double.MAX_VALUE);
-        pane.add(btnSeProduktLager, 0, 5);
+        Tab tabOpretFad = new Tab("Opret fad");
+        tabOpretFad.setContent(new OpretFadVindue());
 
-        // Handlinger til knapper
-        btnOpretDestillering.setOnAction(event -> {
-            OpretDestilleringVindue vindue = new OpretDestilleringVindue();
-            vindue.show();
-        });
+        Tab tabOpretLager = new Tab("Opret lager");
+        tabOpretLager.setContent(new OpretLagerVindue());
 
-        btnSeFadLager.setOnAction(event -> {
-            SeFadLagerVindue vindue = new SeFadLagerVindue();
-            vindue.show();
-        });
+        tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabFadLager, tabProduktLager);
 
-        btnSeProduktLager.setOnAction(event -> {
-            SeProduktLagerVindue vindue = new SeProduktLagerVindue();
-            vindue.show();
-        });
-
-        btnOpretFad.setOnAction(event -> {
-            OpretFadVindue vindue = new OpretFadVindue();
-            vindue.show();
-        });
-
-        btnOpretLager.setOnAction(event -> {
-            OpretLagerVindue vindue = new OpretLagerVindue();
-            vindue.show();
-        });
+        pane.setCenter(tabPane);
     }
 }

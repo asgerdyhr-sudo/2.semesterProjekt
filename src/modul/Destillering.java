@@ -5,60 +5,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Destillering {
+    private final LocalDate dato;
     private final int mængdeLiter;
-    private final LocalDate påfyldningsDato;
-    private final String signatur;
-    private final int alkoholProcent;
-    private final int newMakeNummer;
+    private final boolean rygemateriale;
     private final List<Maltbatch> maltbatches;
+    private Medarbejder medarbejder;
 
-    public Destillering(int mængdeLiter, LocalDate påfyldningsDato, String signatur, int alkoholProcent, int newMakeNummer, List<Maltbatch> maltbatches) {
+    public Destillering(LocalDate dato, int mængdeLiter, boolean rygemateriale, List<Maltbatch> maltbatches, Medarbejder medarbejder) {
+        this.dato = dato;
         this.mængdeLiter = mængdeLiter;
-        this.påfyldningsDato = påfyldningsDato;
-        this.signatur = signatur;
-        this.alkoholProcent = alkoholProcent;
-        this.newMakeNummer = newMakeNummer;
+        this.rygemateriale = rygemateriale;
+
         if (maltbatches == null || maltbatches.isEmpty()) {
-            throw new IllegalArgumentException("Maltbatch skal være oprettet for at lave en destillering");
+            throw new IllegalArgumentException("Der skal være minimum 1 maltbatch knyttet til en destillering.");
         }
         this.maltbatches = new ArrayList<>(maltbatches);
+
+        if (medarbejder == null) {
+            throw new IllegalArgumentException("En destillering skal have tilknyttet en medarbejder.");
+        }
+        this.medarbejder = medarbejder;
     }
 
-    public void addMaltbatch(Maltbatch maltbatch) {
-        if (!maltbatches.contains(maltbatch)) {
-            maltbatches.add(maltbatch);
-        }
-    }
-
-    public void removeMaltbatch(Maltbatch maltbatch) {
-        if (maltbatches.contains(maltbatch)) {
-            maltbatches.remove(maltbatch);
-        }
+    public LocalDate getDato() {
+        return dato;
     }
 
     public int getMængdeLiter() {
         return mængdeLiter;
     }
 
-    public LocalDate getPåfyldningsDato() {
-        return påfyldningsDato;
+    public boolean isRygemateriale() {
+        return rygemateriale;
     }
 
-    public String getSignatur() {
-        return signatur;
-    }
-
-    public int getAlkoholProcent() {
-        return alkoholProcent;
-    }
-
-    public int getNewMakeNummer() {
-        return newMakeNummer;
+    public void addMaltbatch(Maltbatch maltbatch) {
+        if (!this.maltbatches.contains(maltbatch)) {
+            this.maltbatches.add(maltbatch);
+        }
     }
 
     public List<Maltbatch> getMaltbatches() {
-        return maltbatches;
+        return new ArrayList<>(maltbatches);
+    }
+
+    public Medarbejder getMedarbejder() {
+        return medarbejder;
+    }
+
+    public void setMedarbejder(Medarbejder medarbejder) {
+        if (medarbejder == null) {
+            throw new IllegalArgumentException("Medarbejder må ikke være null.");
+        }
+        this.medarbejder = medarbejder;
     }
 }
-
-

@@ -1,19 +1,12 @@
 package GUI;
 
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
-public class OpretFadVindue extends Stage {
+public class OpretFadVindue extends GridPane {
 
     public OpretFadVindue() {
-        this.setTitle("Opret fad");
-        GridPane pane = new GridPane();
-        this.initContent(pane);
-
-        Scene scene = new Scene(pane, 400, 300);
-        this.setScene(scene);
+        this.initContent(this);
     }
 
     private void initContent(GridPane pane) {
@@ -22,7 +15,6 @@ public class OpretFadVindue extends Stage {
         pane.setVgap(10);
         pane.setGridLinesVisible(false);
 
-        // TODO: Tilføj GUI-elementer og logik her
+        // TODO: Tilfj GUI-elementer og logik her
     }
 }
-
