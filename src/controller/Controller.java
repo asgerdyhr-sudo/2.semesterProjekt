@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 public class Controller {
 
-
     Istorage storage;
 
     public Controller(Istorage storage) {
@@ -21,8 +20,8 @@ public class Controller {
         return destillering;
     }
 
-    public Fad createFad(int fadNr, String fadType, int størrelseLiter, String tidligereIndhold, Leverandør leverandør) {
-        Fad fad = new Fad(fadNr, fadType, størrelseLiter, tidligereIndhold, leverandør);
+    public Fad createFad(String fadType, int størrelseLiter, String tidligereIndhold, Leverandør leverandør) {
+        Fad fad = new Fad(fadType, størrelseLiter, tidligereIndhold, leverandør);
         storage.addFad(fad);
         return fad;
     }
