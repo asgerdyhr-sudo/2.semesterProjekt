@@ -51,29 +51,51 @@ public class Controller {
         return mængdeDestillat;
     }
 
-    public Leverandør createLeverandør (String navn, String land){
+    public Leverandør createLeverandør(String navn, String land) {
         Leverandør leverandør = new Leverandør(navn, land);
         storage.addLeverandør(leverandør);
         return leverandør;
     }
 
-    public List<Medarbejder> getAllMedarbejder(){
+    public List<Medarbejder> getAllMedarbejder() {
         return storage.getAllMedarbejder();
     }
 
-    public List<Leverandør> getAllLeverandør(){
+    public List<Leverandør> getAllLeverandør() {
         return storage.getAllLeverandør();
     }
 
-    public void createSomeObject(){
-        createMedarbejder("Mads Madsen", "11223344", "MM");
+    public List<Lager> getAllLager() {
+        return storage.getAllLager();
+    }
+
+    public List<Fad> getAllFad() {
+        return storage.getAllFad();
+    }
+
+    public void registerFadPlacering(Fad fad, Hylde hylde) {
+        if (hylde.getFad() != null) {
+            throw new IllegalArgumentException("Hylden er allerede optaget af et andet fad.");
+        }
+        fad.setHylde(hylde);
+    }
+
+    public void createSomeObject() {
+        Medarbejder m1 = createMedarbejder("Mads Madsen", "11223344", "MM");
         createMedarbejder("Jens Jensen", "22334455", "JJ");
         createMedarbejder("Hanne Hansen", "33445566", "HH");
         createMedarbejder("Sofie Sørensen", "44556677", "SS");
 
-        createLeverandør("Pedro Barrels", "Spanien");
+        Leverandør l1 = createLeverandør("Pedro Barrels", "Spanien");
         createLeverandør("Francois Tonneaux", "Frankrig");
         createLeverandør("Scottish Cask Co.", "Skotland");
         createLeverandør("American Oak Inc.", "USA");
+
+        MængdeDestillat md1 = createMængdeDestillat(500.0);
+        createDestillering(LocalDate.now(), 65.0, 1, "MaltBatch1", "Tørv", Kornsort.STAIRWAY, md1, m1);
+
+        createFad("Egetræ", 250, "Sherry", l1);
+
+        createLager("Hovedlager", "Bygning A", 10, 10);
     }
 }

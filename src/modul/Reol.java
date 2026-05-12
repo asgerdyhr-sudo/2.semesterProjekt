@@ -36,4 +36,9 @@ public class Reol {
     public Lager getLager() {
         return lager;
     }
+
+    @Override
+    public String toString() {
+        return "Reol " + reolNr;
+    }
 }

@@ -172,15 +172,9 @@ public class OpretDestilleringVindue extends GridPane {
 
                 showInfo("Succes", "Destillering oprettet");
 
-                //Nulstiller alle valg
-                dpDato.setValue(null);
-                txfAlkoholProcent.clear();
-                txfNewMakeNummer.clear();
-                txfMængdeDestilat.clear();
-                txfRygemateriale.clear();
-                cbMaltbatch.getSelectionModel().clearSelection();
-                cbKornsort.getSelectionModel().clearSelection();
-                cbMedarbejder.getSelectionModel().clearSelection();
+                // Skudsikker nulstilling
+                pane.getChildren().clear();
+                initContent(pane);
 
             } catch (NumberFormatException exception) {
                 showAlert("Fejl i indtastning", "Alkohol procent, New Make Nummer og Mængde destillat skal være korrekte tal.");

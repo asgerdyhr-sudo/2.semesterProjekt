@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fad {
+    private static int antalFade = 0;
+
     private final int fadNr;
     private final String fadType;
     private final int størrelseLiter;
@@ -13,7 +15,6 @@ public class Fad {
     private final Leverandør leverandør;
 
     public Fad(String fadType, int størrelseLiter, String tidligereIndhold, Leverandør leverandør) {
-        int antalFade = 0;
         antalFade++;
 
         if (fadType == null) {
@@ -34,6 +35,24 @@ public class Fad {
         this.størrelseLiter = størrelseLiter;
         this.tidligereIndhold = tidligereIndhold;
         this.leverandør = leverandør;
+    }
+
+    @Override
+    public String toString() {
+        return "| Fad " + fadNr + " (" + fadType + " - " + størrelseLiter + "L)";
+    }
+
+    public void setHylde(Hylde hylde) {
+        if (this.hylde != hylde) {
+            Hylde oldHylde = this.hylde;
+            if (oldHylde != null) {
+                oldHylde.setFad(null);
+            }
+            this.hylde = hylde;
+            if (hylde != null) {
+                hylde.setFad(this);
+            }
+        }
     }
 
     public void addDestilat(Destillat destillat) {

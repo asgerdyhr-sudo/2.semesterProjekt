@@ -10,6 +10,19 @@ public class Hylde {
         this.reol = reol;
     }
 
+    public void setFad(Fad fad) {
+        if (this.fad != fad) {
+            Fad oldFad = this.fad;
+            if (oldFad != null) {
+                oldFad.setHylde(null);
+            }
+            this.fad = fad;
+            if (fad != null) {
+                fad.setHylde(this);
+            }
+        }
+    }
+
     public int getHyldeNr() {
         return hyldeNr;
     }
@@ -20,5 +33,10 @@ public class Hylde {
 
     public Fad getFad() {
         return fad;
+    }
+
+    @Override
+    public String toString() {
+        return "Hylde " + hyldeNr;
     }
 }

@@ -83,7 +83,7 @@ public class OpretFadVindue extends GridPane {
         lblLeverandør.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         pane.add(lblLeverandør, 1, 4);
     }
-
+    //tjek linje 116
     private void opretFadButton(GridPane pane) {
         Button btnOpretFad = new Button("Opret fad");
         btnOpretFad.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -113,10 +113,9 @@ public class OpretFadVindue extends GridPane {
                 //Succes besked og ryd felter
                 showInfo("Succes", "Fad er oprettet succesfuldt.");
 
-                txfFadType.clear();
-                cbStørrelse.getSelectionModel().clearSelection();
-                cbTidligereIndhold.getSelectionModel().clearSelection();
-                cbLeverandør.getSelectionModel().clearSelection();
+                // SKUDSIKKER NULSTILLING: Fjerner alt i vinduet og bygger det hele forfra. // skal tjekkes når resten af koden virker
+                pane.getChildren().clear();
+                initContent(pane);
 
             } catch (IllegalArgumentException e) {
                 showAlert("Ugyldig data", e.getMessage());
@@ -127,6 +126,7 @@ public class OpretFadVindue extends GridPane {
 
         pane.add(btnOpretFad, 1, 5);
     }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

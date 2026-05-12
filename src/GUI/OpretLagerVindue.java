@@ -94,18 +94,17 @@ public class OpretLagerVindue extends GridPane {
                 //Konventer antalReoler
                 int antalReoler = Integer.parseInt(txfAntalReoler.getText().trim());
 
-                // Udregner antalHylder
-                int antalHylder = antalReoler * 10;
+                // Sætter antal hylder per reol til 10
+                int antalHylder = 10;
 
                 // Opretter et lager via controller
                 controller.createLager(navn, lokation, antalReoler, antalHylder);
 
-                showInfo("Succes", "Lager er oprettet med " + antalReoler + " reoler og " + antalHylder + " hylder.");
+                showInfo("Succes", "Lager er oprettet med " + antalReoler + " reoler og " + antalHylder + " hylder pr. reol.");
 
-                // Ryder felterne
-                txfNavn.clear();
-                txfLokation.clear();
-                txfAntalReoler.clear();
+                // Skudsikker nulstilling
+                pane.getChildren().clear();
+                initContent(pane);
 
             } catch (NumberFormatException e) {
                 showAlert("Fejl i indtastning", "Antal reoler skal være et helt tal.");

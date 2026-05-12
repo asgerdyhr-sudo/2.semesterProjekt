@@ -15,6 +15,12 @@ public class Lager {
         this.lokation = lokation;
         this.antalReoler = antalReoler;
         this.antalHylder = antalHylder;
+        for (int i = 1; i <= antalReoler; i++) {
+            Reol reol = createReol(i);
+            for (int j = 1; j <= antalHylder; j++) {
+                reol.createHylde(j);
+            }
+        }
     }
 
     public Reol createReol(int reolNr) {
@@ -47,5 +53,10 @@ public class Lager {
 
     public List<Reol> getReolList() {
         return reolList;
+    }
+
+    @Override
+    public String toString() {
+        return navn + " (" + lokation + ")";
     }
 }
