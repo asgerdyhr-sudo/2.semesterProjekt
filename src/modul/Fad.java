@@ -15,27 +15,25 @@ public class Fad {
     public Fad(String fadType, int størrelseLiter, String tidligereIndhold, Leverandør leverandør) {
         int antalFade = 0;
         antalFade++;
-        this.fadNr = antalFade;
+
         if (fadType == null) {
             throw new IllegalArgumentException("Fadtypen skal være angivet");
-        } else {
-            this.fadType = fadType;
         }
         if (størrelseLiter <= 0) {
             throw new IllegalArgumentException("Fadets størrelse kan ikke være 0 L eller negativt");
-        } else {
-            this.størrelseLiter = størrelseLiter;
         }
         if (tidligereIndhold == null) {
             throw new IllegalArgumentException("Tidligere indhold skal vøære angivet");
-        } else {
-            this.tidligereIndhold = tidligereIndhold;
         }
         if (leverandør == null) {
             throw new IllegalArgumentException("Leverandør skal være angivet");
-        } else {
-            this.leverandør = leverandør;
         }
+
+        this.fadNr = antalFade;
+        this.fadType = fadType;
+        this.størrelseLiter = størrelseLiter;
+        this.tidligereIndhold = tidligereIndhold;
+        this.leverandør = leverandør;
     }
 
     public void addDestilat(Destillat destillat) {

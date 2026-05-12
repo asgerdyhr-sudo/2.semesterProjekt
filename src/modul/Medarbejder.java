@@ -11,6 +11,13 @@ public class Medarbejder {
         this.initialer = initialer;
     }
 
+    @Override
+    public String toString() {
+        return navn;
+    }
+
+    
+
     public String getNavn() {
         return navn;
     }

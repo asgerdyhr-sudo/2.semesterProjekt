@@ -8,6 +8,7 @@ import storage.Istorage;
 import storage.Storage;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ControllerTest {
     private Controller controller;
@@ -15,7 +16,8 @@ class ControllerTest {
 
     @BeforeEach
     void setUp() {
-        this.storage = new Storage();
+        //Laver et mock af interfacet istedet for at bruge det rigtige storage
+        this.storage = mock(Istorage.class);
         this.controller = new Controller(storage);
     }
 
@@ -35,8 +37,9 @@ class ControllerTest {
         assertEquals(500, fad.getStørrelseLiter());
         assertEquals("Bourbon", fad.getTidligereIndhold());
         assertEquals(leverandør, fad.getLeverandør());
-        // Skal vi teste at Storage gemmer objektet eller er det i en anden test?
 
+        // Test af at controlleren gemmer fadet i storage (kalder addFad præcis én gang)
+        verify(storage, times(1)).addFad(fad);
     }
 
     @Test
@@ -54,6 +57,9 @@ class ControllerTest {
         assertEquals(250, fad.getStørrelseLiter());
         assertEquals("Sherry", fad.getTidligereIndhold());
         assertEquals(leverandør, fad.getLeverandør());
+
+        // Test af at controlleren gemmer fadet i storage (kalder addFad præcis én gang)
+        verify(storage, times(1)).addFad(fad);
     }
 
     @Test

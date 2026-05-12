@@ -1,5 +1,6 @@
 package GUI;
 
+import controller.Controller;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,15 +13,26 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import storage.Istorage;
+import storage.Storage;
 
 public class StartVidue extends Application {
+    private Controller controller;
+
+    @Override
+    public void init() throws Exception{
+        Istorage storage = new Storage();
+        controller = new Controller(storage);
+        controller.createSomeObject();;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Sall whiskey destilleri");
         BorderPane pane = new BorderPane();
         initContent(pane);
 
-        Scene scene = new Scene(pane, 800, 600);
+        Scene scene = new Scene(pane, 800, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -39,7 +51,7 @@ public class StartVidue extends Application {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         Tab tabDestillering = new Tab("Opret destillering");
-        tabDestillering.setContent(new OpretDestilleringVindue());
+        tabDestillering.setContent(new OpretDestilleringVindue(controller));
 
         Tab tabFadLager = new Tab("Se fad lager");
         tabFadLager.setContent(new SeFadLagerVindue());

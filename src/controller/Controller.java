@@ -5,6 +5,7 @@ import storage.Istorage;
 import storage.Storage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Controller {
 
@@ -56,7 +57,16 @@ public class Controller {
         return leverandør;
     }
 
-    public void createSomeObject(){
+    public List<Medarbejder> getAllMedarbejder(){
+        return storage.getAllMedarbejder();
+    }
 
+
+
+    public void createSomeObject(){
+        createMedarbejder("Mads Madsen", "11223344", "MM");
+        createMedarbejder("Jens Jensen", "22334455", "JJ");
+        createMedarbejder("Hanne Hansen", "33445566", "HH");
+        createMedarbejder("Sofie Sørensen", "44556677", "SS");
     }
 }
