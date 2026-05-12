@@ -25,7 +25,6 @@ class ControllerTest {
     void TC1_createFad_gyldigeData1() {
         //Arrange
         Leverandør leverandør = new Leverandør("Leverandør", "Spanien");
-        //Skal vi mocke leverandør?
 
         //Act
         Fad fad = controller.createFad("Portpipe", 500, "Bourbon", leverandør);

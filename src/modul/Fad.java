@@ -39,13 +39,16 @@ public class Fad {
     public void addDestilat(Destillat destillat) {
         if (!destilatList.contains(destillat)) {
             destilatList.add(destillat);
+            destillat.setFad(this);
         }
     }
 
     public void removeDestilat(Destillat destillat) {
         if (destilatList.contains(destillat)) {
             destilatList.remove(destillat);
+            destillat.setFad(null);
         }
+
     }
 
     public int getFadNr() {

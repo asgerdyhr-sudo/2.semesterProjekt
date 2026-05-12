@@ -14,6 +14,7 @@ public class Destillering {
     private final MængdeDestillat mængdeDestillat;
     private final Medarbejder medarbejder;
 
+
     public Destillering(LocalDate dato, double alkoholProcent, int newMakeNr, String maltbatch, String rygemateriale, Kornsort kornsort, MængdeDestillat mængdeDestillat, Medarbejder medarbejder) {
         if (dato == null) {
             throw new IllegalArgumentException("Dato må ikke være tom.");
@@ -38,7 +39,23 @@ public class Destillering {
         this.rygemateriale = rygemateriale;
         this.kornsort = kornsort;
         this.mængdeDestillat = mængdeDestillat;
+        if (mængdeDestillat != null) {
+            mængdeDestillat.addDestillering(this);
+        }
         this.medarbejder = medarbejder;
+    }
+
+    @Override
+    public String toString() {
+        return "Destillering\n" +
+                "| Dato: " + dato + " | " + "Alkoholprocent: " + alkoholProcent + " | " +
+                ", newMakeNr: NM-" + newMakeNr +
+                ", maltbatch='" + maltbatch + '\'' +
+                ", rygemateriale='" + rygemateriale + '\'' +
+                ", kornsort=" + kornsort +
+                ", mængdeDestillat=" + mængdeDestillat +
+                ", medarbejder=" + medarbejder +
+                '}';
     }
 
     public LocalDate getDato() {

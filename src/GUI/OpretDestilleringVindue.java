@@ -11,9 +11,20 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import modul.Kornsort;
 import modul.Medarbejder;
+import modul.MængdeDestillat;
 
 public class OpretDestilleringVindue extends GridPane {
     private final Controller controller;
+
+    //Definere UI componenter så de kan tilgåes
+    private DatePicker dpDato;
+    private TextField txfAlkoholProcent;
+    private TextField txfNewMakeNummer;
+    private ComboBox<String> cbMaltbatch;
+    private ComboBox<Kornsort> cbKornsort;
+    private TextField txfRygemateriale;
+    private TextField txfMængdeDestilat;
+    private ComboBox<Medarbejder> cbMedarbejder;
 
 
     public OpretDestilleringVindue(Controller controller) {
@@ -28,18 +39,8 @@ public class OpretDestilleringVindue extends GridPane {
         pane.setGridLinesVisible(false);
 
         overksrift(pane);
-
         textAndLabels(pane);
-
-        //Knap til at oprette destillering
-        Button bntOpretDestillering = new Button("Opret destillering");
-        bntOpretDestillering.setFont(Font.font("Arial",FontWeight.BOLD,12));
-        bntOpretDestillering.setPrefWidth(150);
-        bntOpretDestillering.setPrefHeight(50);
-        pane.add(bntOpretDestillering,1,9);
-
-        //popup med oprettet destillering eller de forskelliger fejl der kan forekomme eller mangler
-
+        opretDestilleringButton(pane);
     }
 
     private void overksrift(GridPane pane) {
@@ -51,34 +52,37 @@ public class OpretDestilleringVindue extends GridPane {
 
     private void textAndLabels(GridPane pane) {
         //vælg dato - DatePicer
-        DatePicker dpDato = new DatePicker();
+        dpDato = new DatePicker();
         dpDato.setPrefWidth(500);
-        pane.add(dpDato,0,1);
+        pane.add(dpDato, 0, 1);
 
         Label lblDato = new Label("Dato");
-        lblDato.setFont(Font.font("Arial",FontWeight.BOLD,14));
-        pane.add(lblDato,1,1);
+        lblDato.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        pane.add(lblDato, 1, 1);
 
         //Skriv alkohol procent (double)
-        TextField txfAlkoholProcent = new TextField();
+        txfAlkoholProcent = new TextField();
+        txfAlkoholProcent.setPromptText("F.eks. 63.5");
         txfAlkoholProcent.setPrefWidth(500);
-        pane.add(txfAlkoholProcent,0,2);
+        pane.add(txfAlkoholProcent, 0, 2);
 
         Label lblAlkoholProcent = new Label("Alkohol procent");
-        lblAlkoholProcent.setFont(Font.font("Arial",FontWeight.BOLD,14));
-        pane.add(lblAlkoholProcent,1,2);
+        lblAlkoholProcent.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        pane.add(lblAlkoholProcent, 1, 2);
 
         //skriv new make nummer (int)
-        TextField txfNewMakeNummer = new TextField();
+        txfNewMakeNummer = new TextField();
+        txfNewMakeNummer.setPromptText("F.eks. 2");
         txfNewMakeNummer.setPrefWidth(500);
-        pane.add(txfNewMakeNummer,0,3);
+        pane.add(txfNewMakeNummer, 0, 3);
 
         Label lblNewMakeNummer = new Label("New Make Nummer");
-        lblNewMakeNummer.setFont(Font.font("Arial",FontWeight.BOLD,14));
-        pane.add(lblNewMakeNummer,1,3);
+        lblNewMakeNummer.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        pane.add(lblNewMakeNummer, 1, 3);
 
         //Vælg maltBatch - dropdown med valgmulgiheder
-        ComboBox<String> cbMaltbatch = new ComboBox<>();
+        cbMaltbatch = new ComboBox<>();
+        cbMaltbatch.setPromptText("Vælg maltbatch");
         cbMaltbatch.getItems().addAll("Batch 1", "Batch 2", "Batch 3", "Batch 4", "Batch 5", "batch 6");
         cbMaltbatch.setPrefWidth(500);
         pane.add(cbMaltbatch, 0, 4);
@@ -88,32 +92,120 @@ public class OpretDestilleringVindue extends GridPane {
         pane.add(lblMaltbatch, 1, 4);
 
         //vælg kornsort - dropdown med enums
-        ComboBox<Kornsort> cbKornsort = new ComboBox<>();
-        cbKornsort.getItems().addAll(Kornsort.EVERGREEN,Kornsort.IRINA,Kornsort.STAIRWAY);
+        cbKornsort = new ComboBox<>();
+        cbKornsort.setPromptText("Vælg kornsort");
+        cbKornsort.getItems().addAll(Kornsort.EVERGREEN, Kornsort.IRINA, Kornsort.STAIRWAY);
         cbKornsort.setPrefWidth(500);
-        pane.add(cbKornsort,0,5);
+        pane.add(cbKornsort, 0, 5);
 
         Label lblKornsort = new Label("Kornsort");
         lblKornsort.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        pane.add(lblKornsort,1,5);
+        pane.add(lblKornsort, 1, 5);
 
         //skriv ingen i rygemateriale - String
-        TextField txfRygemateriale = new TextField();
+        txfRygemateriale = new TextField();
+        txfRygemateriale.setPromptText("F.eks. 'ingen'");
         txfRygemateriale.setPrefWidth(500);
-        pane.add(txfRygemateriale,0,6);
+        pane.add(txfRygemateriale, 0, 6);
 
         Label lblRygemarteriale = new Label("Rygemarteriale");
         lblRygemarteriale.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        pane.add(lblRygemarteriale,1,6);
+        pane.add(lblRygemarteriale, 1, 6);
+
+        txfMængdeDestilat = new TextField();
+        txfMængdeDestilat.setPromptText("F.eks. 500 i Liter");
+        txfMængdeDestilat.setPrefWidth(500);
+        pane.add(txfMængdeDestilat, 0, 7);
+
+        Label lblMængdeDestilat = new Label("Mængde destilat");
+        lblMængdeDestilat.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        pane.add(lblMængdeDestilat, 1, 7);
 
         //Dropdwon af medarbejder valg
-        ComboBox<Medarbejder> cbMedarbejder = new ComboBox<>();
+        cbMedarbejder = new ComboBox<>();
+        cbMedarbejder.setPromptText("Vælg medarbejder");
         cbMedarbejder.getItems().addAll(controller.getAllMedarbejder());
         cbMedarbejder.setPrefWidth(500);
-        pane.add(cbMedarbejder,0,7);
+        pane.add(cbMedarbejder, 0, 8);
 
         Label lblMedarbejder = new Label("Medarbejder");
-        lblMedarbejder.setFont(Font.font("Arial",FontWeight.BOLD,14));
-        pane.add(lblMedarbejder,1,7);
+        lblMedarbejder.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        pane.add(lblMedarbejder, 1, 8);
+    }
+
+    private void opretDestilleringButton(GridPane pane) {
+        Button bntOpretDestillering = new Button("Opret destillering");
+        bntOpretDestillering.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        bntOpretDestillering.setPrefWidth(150);
+        bntOpretDestillering.setPrefHeight(50);
+
+        bntOpretDestillering.setOnAction(event -> {
+            try {
+                // Tjekker om felter og dropdwons er tomme
+                if (dpDato.getValue() == null || cbMaltbatch.getValue() == null ||
+                        cbKornsort.getValue() == null || cbMedarbejder.getValue() == null ||
+                        txfMængdeDestilat.getText().trim().isEmpty() ||
+                        txfAlkoholProcent.getText().trim().isEmpty() ||
+                        txfNewMakeNummer.getText().trim().isEmpty()) {
+                    showAlert("Advarsel", "Udfyld venligst alle valgfelter.");
+                    return;
+                }
+
+                //Konventere text to numbers
+                double alkoholProcent = Double.parseDouble(txfAlkoholProcent.getText().trim());
+                int newMakeNummer = Integer.parseInt(txfNewMakeNummer.getText().trim());
+                double mængdeLiter = Double.parseDouble(txfMængdeDestilat.getText().trim());
+                String rygemateriale = txfRygemateriale.getText().trim();
+
+                //Validere at alkohol procent er over 40% og under 100%
+                if (alkoholProcent < 40 || alkoholProcent > 100) {
+                    showAlert("Advarsel", "Alkoholprocent skal være mellem 40 og 100");
+                    return;
+                }
+
+                //Laver MængdeDestillat objet
+                MængdeDestillat mængdeDestillat = controller.createMængdeDestillat(mængdeLiter);
+
+                //Creat Destillering
+                controller.createDestillering(dpDato.getValue(), alkoholProcent, newMakeNummer, cbMaltbatch.getValue(),
+                        rygemateriale, cbKornsort.getValue(), mængdeDestillat, cbMedarbejder.getValue());
+
+                showInfo("Succes", "Destillering oprettet");
+
+                //Nulstiller alle valg
+                dpDato.setValue(null);
+                txfAlkoholProcent.clear();
+                txfNewMakeNummer.clear();
+                txfMængdeDestilat.clear();
+                txfRygemateriale.clear();
+                cbMaltbatch.getSelectionModel().clearSelection();
+                cbKornsort.getSelectionModel().clearSelection();
+                cbMedarbejder.getSelectionModel().clearSelection();
+
+            } catch (NumberFormatException exception) {
+                showAlert("Fejl i indtastning", "Alkohol procent, New Make Nummer og Mængde destillat skal være korrekte tal.");
+            } catch (IllegalArgumentException exception) {
+                showAlert("Ugyldig data", exception.getMessage());
+            }
+
+        });
+
+        pane.add(bntOpretDestillering, 1, 10);
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showInfo(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -12,13 +12,13 @@ public class MængdeDestillat {
         this.mængdeLiter = mængdeLiter;
     }
 
-    public void addDestilat (Destillat destillat){
+    public void addDestillat (Destillat destillat){
         if (!destillatList.contains(destillat)){
             destillatList.add(destillat);
         }
     }
 
-    public void removeDestilat (Destillat destillat){
+    public void removeDestillat (Destillat destillat){
         if (destillatList.contains(destillat)){
             destillatList.remove(destillat);
         }

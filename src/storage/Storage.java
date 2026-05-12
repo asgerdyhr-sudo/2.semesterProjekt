@@ -53,6 +53,28 @@ public class Storage implements Istorage {
     }
 
     @Override
+    public List<Fad> getAllFyldteFad() {
+        List<Fad> temp = new ArrayList<>();
+        for (Fad fad : fadList) {
+            if (!fad.getDestilatList().isEmpty()) {
+                temp.add(fad);
+            }
+        }
+        return temp;
+    }
+
+    @Override
+    public List<Fad> getAlleTommeFad() {
+        List<Fad> temp = new ArrayList<>();
+        for (Fad fad : fadList) {
+            if (fad.getDestilatList().isEmpty()) {
+                temp.add(fad);
+            }
+        }
+        return temp;
+    }
+
+    @Override
     public void addLager(Lager lager) {
         if (!lagerList.contains(lager)) {
             lagerList.add(lager);

@@ -1,5 +1,6 @@
 package storage;
 
+import javafx.animation.FadeTransition;
 import modul.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public interface Istorage {
     void removeFad(Fad fad);
 
     List<Fad> getAllFad();
+
+    List<Fad> getAllFyldteFad();
+
+    List<Fad> getAlleTommeFad();
 
     void addLager(Lager lager);
 

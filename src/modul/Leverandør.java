@@ -12,6 +12,12 @@ public class Leverandør {
         this.land = land;
     }
 
+    @Override
+    public String toString() {
+        return "| Navn: " + navn + " - " +
+                "Land: " + land + " |";
+    }
+
     public String getNavn() {
         return navn;
     }

@@ -32,7 +32,7 @@ public class StartVidue extends Application {
         BorderPane pane = new BorderPane();
         initContent(pane);
 
-        Scene scene = new Scene(pane, 800, 500);
+        Scene scene = new Scene(pane, 800, 550);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -60,10 +60,10 @@ public class StartVidue extends Application {
         tabProduktLager.setContent(new SeProduktLagerVindue());
 
         Tab tabOpretFad = new Tab("Opret fad");
-        tabOpretFad.setContent(new OpretFadVindue());
+        tabOpretFad.setContent(new OpretFadVindue(controller));
 
         Tab tabOpretLager = new Tab("Opret lager");
-        tabOpretLager.setContent(new OpretLagerVindue());
+        tabOpretLager.setContent(new OpretLagerVindue(controller));
 
         Tab tabRegisterFadplacering = new Tab("Register fadplacering");
         tabRegisterFadplacering.setContent(new RegisterFadplaceringVindue());

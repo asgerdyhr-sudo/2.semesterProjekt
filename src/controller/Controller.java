@@ -61,12 +61,19 @@ public class Controller {
         return storage.getAllMedarbejder();
     }
 
-
+    public List<Leverandør> getAllLeverandør(){
+        return storage.getAllLeverandør();
+    }
 
     public void createSomeObject(){
         createMedarbejder("Mads Madsen", "11223344", "MM");
         createMedarbejder("Jens Jensen", "22334455", "JJ");
         createMedarbejder("Hanne Hansen", "33445566", "HH");
         createMedarbejder("Sofie Sørensen", "44556677", "SS");
+
+        createLeverandør("Pedro Barrels", "Spanien");
+        createLeverandør("Francois Tonneaux", "Frankrig");
+        createLeverandør("Scottish Cask Co.", "Skotland");
+        createLeverandør("American Oak Inc.", "USA");
     }
 }
