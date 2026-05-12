@@ -16,5 +16,11 @@ public class OpretFadVindue extends GridPane {
         pane.setGridLinesVisible(false);
 
         // TODO: Tilfj GUI-elementer og logik her
+
+        //skriv fad nummer (int)
+        //skriv fad type (string)
+        //dropdown med størrelse af fad
+        //dropdown med tidligere indhold af fad
+        //dropdown med leverandører
     }
 }

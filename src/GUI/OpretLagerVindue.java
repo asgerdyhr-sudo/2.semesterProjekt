@@ -16,5 +16,9 @@ public class OpretLagerVindue extends GridPane {
         pane.setGridLinesVisible(false);
 
         // TODO: Tilfj GUI-elementer og logik her
+        //skriv navn på lager
+        //skriv lokation på lager
+        //angiv antal reoler
+        //udregn antal hylder (10 hylder pr reol)
     }
 }
