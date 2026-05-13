@@ -9,7 +9,7 @@ import storage.Istorage;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ControllerTest {
+class ControllerTestCreateFad {
     private Controller controller;
     private Istorage storage;
 
