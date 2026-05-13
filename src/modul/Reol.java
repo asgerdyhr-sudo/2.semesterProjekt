@@ -19,6 +19,11 @@ public class Reol {
         return hylde;
     }
 
+    @Override
+    public String toString() {
+        return "Reol " + reolNr;
+    }
+
     public void removeHylde(Hylde hylde) {
         if (hyldeList.contains(hylde)) {
             hyldeList.remove(hylde);
@@ -35,10 +40,5 @@ public class Reol {
 
     public Lager getLager() {
         return lager;
-    }
-
-    @Override
-    public String toString() {
-        return "Reol " + reolNr;
     }
 }

@@ -2,7 +2,6 @@ package controller;
 
 import modul.*;
 import storage.Istorage;
-import storage.Storage;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -33,8 +32,8 @@ public class Controller {
         return lager;
     }
 
-    public Destillat createDestillat(int alkolholProcent, LocalDate påfyldningsDato, String signatur, MængdeDestillat mængdeDestillat, Medarbejder medarbejder) {
-        Destillat destillat = new Destillat(alkolholProcent, påfyldningsDato, signatur, mængdeDestillat, medarbejder);
+    public Destillat createDestillat(double alkolholProcent, LocalDate påfyldningsDato, MængdeDestillat mængdeDestillat, Medarbejder medarbejder) {
+        Destillat destillat = new Destillat(alkolholProcent, påfyldningsDato, mængdeDestillat, medarbejder);
         storage.addDestilat(destillat);
         return destillat;
     }
@@ -73,6 +72,10 @@ public class Controller {
         return storage.getAllFad();
     }
 
+    public List<Destillat> getAllDestillat() {
+        return storage.getAllDestilat();
+    }
+
     public void registerFadPlacering(Fad fad, Hylde hylde) {
         if (hylde.getFad() != null) {
             throw new IllegalArgumentException("Hylden er allerede optaget af et andet fad.");
@@ -80,7 +83,11 @@ public class Controller {
         fad.setHylde(hylde);
     }
 
-    public void createSomeObject() {
+    public void registrerPåfyldning(Destillat destillat, Fad fad) {
+        destillat.setFad(fad);
+    }
+
+    public void createSomeObjects() {
         Medarbejder m1 = createMedarbejder("Mads Madsen", "11223344", "MM");
         createMedarbejder("Jens Jensen", "22334455", "JJ");
         createMedarbejder("Hanne Hansen", "33445566", "HH");
@@ -92,10 +99,12 @@ public class Controller {
         createLeverandør("American Oak Inc.", "USA");
 
         MængdeDestillat md1 = createMængdeDestillat(500.0);
-        createDestillering(LocalDate.now(), 65.0, 1, "MaltBatch1", "Tørv", Kornsort.STAIRWAY, md1, m1);
+        createDestillering(LocalDate.now(), 65.0, 1, "MaltBatch1", "ingen", Kornsort.STAIRWAY, md1, m1);
+        createDestillat(63.5, LocalDate.now(), md1, m1);
 
         createFad("Egetræ", 250, "Sherry", l1);
+        createFad("Bark",500,"Burbon",l1);
 
-        createLager("Hovedlager", "Bygning A", 10, 10);
+        createLager("Hovedlager", "Bygning A", 5, 10);
     }
 }

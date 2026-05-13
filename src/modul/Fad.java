@@ -17,13 +17,13 @@ public class Fad {
     public Fad(String fadType, int størrelseLiter, String tidligereIndhold, Leverandør leverandør) {
         antalFade++;
 
-        if (fadType == null) {
+        if (fadType == null || fadType.isBlank()) {
             throw new IllegalArgumentException("Fadtypen skal være angivet");
         }
         if (størrelseLiter <= 0) {
             throw new IllegalArgumentException("Fadets størrelse kan ikke være 0 L eller negativt");
         }
-        if (tidligereIndhold == null) {
+        if (tidligereIndhold == null || tidligereIndhold.isBlank()) {
             throw new IllegalArgumentException("Tidligere indhold skal vøære angivet");
         }
         if (leverandør == null) {

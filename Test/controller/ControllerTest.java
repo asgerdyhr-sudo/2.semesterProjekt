@@ -5,7 +5,6 @@ import modul.Leverandør;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.Istorage;
-import storage.Storage;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -42,7 +41,7 @@ class ControllerTest {
     }
 
     @Test
-    void TC2_createFad_gydligeData2() {
+    void TC2_createFad_gyldigeData2() {
         //Arrange
         Leverandør leverandør = new Leverandør("Leverandør", "Frankrig");
 

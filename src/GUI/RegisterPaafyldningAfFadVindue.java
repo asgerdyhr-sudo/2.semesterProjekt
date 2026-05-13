@@ -18,4 +18,3 @@ public class RegisterPaafyldningAfFadVindue extends GridPane {
         // TODO: Tilføj GUI-elementer og logik her
     }
 }
-

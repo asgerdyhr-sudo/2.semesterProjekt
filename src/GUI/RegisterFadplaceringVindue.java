@@ -126,7 +126,6 @@ public class RegisterFadplaceringVindue extends GridPane {
                         cbHylde.getItems().add(hylde);
                     }
                 }
-
                 // Gør hylde-dropdown aktiv, hvis der er ledige hylder tilbage
                 cbHylde.setDisable(cbHylde.getItems().isEmpty());
             } else {

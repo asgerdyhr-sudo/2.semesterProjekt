@@ -23,7 +23,7 @@ public class StartVidue extends Application {
     public void init() throws Exception{
         Istorage storage = new Storage();
         controller = new Controller(storage);
-        controller.createSomeObject();;
+        controller.createSomeObjects();;
     }
 
     @Override

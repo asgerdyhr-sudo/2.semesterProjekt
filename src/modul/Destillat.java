@@ -5,15 +5,13 @@ import java.time.LocalDate;
 public class Destillat {
     private final double alkoholProcent;
     private final LocalDate påfyldningsDato;
-    private final String signatur;
     private MængdeDestillat mængdeDestillat;
     private Fad fad;
     private final Medarbejder medarbejder;
 
-    public Destillat(double alkoholProcent, LocalDate påfyldningsDato, String signatur, MængdeDestillat mængdeDestillat, Medarbejder medarbejder) {
+    public Destillat(double alkoholProcent, LocalDate påfyldningsDato, MængdeDestillat mængdeDestillat, Medarbejder medarbejder) {
         this.alkoholProcent = alkoholProcent;
         this.påfyldningsDato = påfyldningsDato;
-        this.signatur = signatur;
         this.mængdeDestillat = mængdeDestillat;
         if (mængdeDestillat != null) {
             mængdeDestillat.addDestillat(this);
@@ -29,10 +27,6 @@ public class Destillat {
         return påfyldningsDato;
     }
 
-    public String getSignatur() {
-        return signatur;
-    }
-
     public MængdeDestillat getMængdeDestillat() {
         return mængdeDestillat;
     }
@@ -45,6 +39,7 @@ public class Destillat {
         return medarbejder;
     }
 
+    //Ikke triviel metode 1
     public void setFad(Fad fad) {
         if (this.fad != fad) {
             Fad oldFad = this.fad;
@@ -56,6 +51,5 @@ public class Destillat {
                 fad.addDestilat(this);
             }
         }
-
     }
 }

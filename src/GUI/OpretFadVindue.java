@@ -113,7 +113,7 @@ public class OpretFadVindue extends GridPane {
                 //Succes besked og ryd felter
                 showInfo("Succes", "Fad er oprettet succesfuldt.");
 
-                // SKUDSIKKER NULSTILLING: Fjerner alt i vinduet og bygger det hele forfra. // skal tjekkes når resten af koden virker
+                // SKUDSIKKER NULSTILLING:
                 pane.getChildren().clear();
                 initContent(pane);
 
@@ -125,6 +125,7 @@ public class OpretFadVindue extends GridPane {
         });
 
         pane.add(btnOpretFad, 1, 5);
+
     }
 
 
