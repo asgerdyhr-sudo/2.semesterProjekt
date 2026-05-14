@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Destillat {
     private final double alkoholProcent;
     private final LocalDate påfyldningsDato;
-    private MængdeDestillat mængdeDestillat;
+    private final MængdeDestillat mængdeDestillat;
     private Fad fad;
     private final Medarbejder medarbejder;
 
@@ -17,6 +17,23 @@ public class Destillat {
             mængdeDestillat.addDestillat(this);
         }
         this.medarbejder = medarbejder;
+    }
+
+    @Override
+    public String toString() {
+        String info = "Dato: " + påfyldningsDato + " | " + alkoholProcent + "%";
+
+        if (mængdeDestillat != null) {
+            info += " | Liter: " + mængdeDestillat.getMængdeLiter();
+
+            if (!mængdeDestillat.getDestilleringList().isEmpty()) {
+                Destillering destillering = mængdeDestillat.getDestilleringList().getFirst();
+                info += " | Destillering: NM-" + destillering.getNewMakeNr() +
+                        ", " + destillering.getKornsort() +
+                        ", Maltbatch: " + destillering.getMaltbatch();
+            }
+        }
+        return info;
     }
 
     public double getAlkoholProcent() {

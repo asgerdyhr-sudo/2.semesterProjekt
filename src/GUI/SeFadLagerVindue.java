@@ -30,7 +30,6 @@ public class SeFadLagerVindue extends GridPane {
 
         overskrift(pane);
         textAndLabels(pane);
-
         logik();
     }
 

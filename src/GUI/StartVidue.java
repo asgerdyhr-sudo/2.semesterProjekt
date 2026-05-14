@@ -23,7 +23,7 @@ public class StartVidue extends Application {
     public void init() throws Exception{
         Istorage storage = new Storage();
         controller = new Controller(storage);
-        controller.createSomeObjects();;
+        controller.createSomeObjects();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class StartVidue extends Application {
         BorderPane pane = new BorderPane();
         initContent(pane);
 
-        Scene scene = new Scene(pane, 800, 550);
+        Scene scene = new Scene(pane, 850, 550);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -53,6 +53,32 @@ public class StartVidue extends Application {
         Tab tabDestillering = new Tab("Opret destillering");
         tabDestillering.setContent(new OpretDestilleringVindue(controller));
 
+        Tab tabOpretFad = new Tab("Opret fad");
+        tabOpretFad.setContent(new OpretFadVindue(controller));
+
+        Tab tabOpretLager = new Tab("Opret lager");
+        tabOpretLager.setContent(new OpretLagerVindue(controller));
+
+        Tab tabRegisterFadplacering = new Tab("Register fadplacering");
+        RegisterFadplaceringVindue registerFadplaceringVindue = new RegisterFadplaceringVindue(controller);
+        tabRegisterFadplacering.setContent(registerFadplaceringVindue);
+
+        tabRegisterFadplacering.setOnSelectionChanged(event -> {
+            if (tabRegisterFadplacering.isSelected()) {
+                registerFadplaceringVindue.updateData();
+            }
+        });
+
+        Tab tabRegisterPaafyldningAfFad = new Tab("Register påfyldning af fad");
+        RegisterPaafyldningAfFadVindue registerPaafyldningAfFadVindue = new RegisterPaafyldningAfFadVindue(controller);
+        tabRegisterPaafyldningAfFad.setContent(registerPaafyldningAfFadVindue);
+
+        tabRegisterPaafyldningAfFad.setOnSelectionChanged(event -> {
+            if (tabRegisterPaafyldningAfFad.isSelected()){
+                registerPaafyldningAfFadVindue.updateData();
+            }
+        });
+
         Tab tabFadLager = new Tab("Se fad lager");
         SeFadLagerVindue seFadLagerVindue = new SeFadLagerVindue(controller);
         tabFadLager.setContent(seFadLagerVindue);
@@ -66,25 +92,9 @@ public class StartVidue extends Application {
         Tab tabProduktLager = new Tab("Se produkt lager");
         tabProduktLager.setContent(new SeProduktLagerVindue());
 
-        Tab tabOpretFad = new Tab("Opret fad");
-        tabOpretFad.setContent(new OpretFadVindue(controller));
 
-        Tab tabOpretLager = new Tab("Opret lager");
-        tabOpretLager.setContent(new OpretLagerVindue(controller));
 
-        Tab tabRegisterFadplacering = new Tab("Register fadplacering");
-        RegisterFadplaceringVindue registerFadplaceringVindue = new RegisterFadplaceringVindue(controller);
-        tabRegisterFadplacering.setContent(registerFadplaceringVindue);
 
-        // Sørg for at den opdaterer data, hver gang man trykker på fanen
-        tabRegisterFadplacering.setOnSelectionChanged(event -> {
-            if (tabRegisterFadplacering.isSelected()) {
-                registerFadplaceringVindue.updateData();
-            }
-        });
-
-        Tab tabRegisterPaafyldningAfFad = new Tab("Register påfyldning af fad");
-        tabRegisterPaafyldningAfFad.setContent(new RegisterPaafyldningAfFadVindue());
 
         tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabRegisterFadplacering, tabRegisterPaafyldningAfFad, tabFadLager, tabProduktLager);
 
