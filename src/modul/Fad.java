@@ -43,12 +43,19 @@ public class Fad {
     }
 
     public void setHylde(Hylde hylde) {
+        // Hvis fadet flyttes til en ny hylde, skal den gamle hylde frigøres og den nye hylde skal pege på fadet.
         if (this.hylde != hylde) {
+            // Gem den gamle hylde, så vi kan rydde den, hvis fadet flyttes væk.
             Hylde oldHylde = this.hylde;
+            // Hvis fadet før lå på en hylde, så skal den hylde ikke længere pege på fadet.
+            // Vi fjerner koblingen fra hyldens side.
             if (oldHylde != null) {
                 oldHylde.setFad(null);
             }
+            // Opdater fadets reference til hylden.
             this.hylde = hylde;
+            // Hvis der sættes en ny hylde (ikke null), skal hylden også opdateres,
+            // så den peger tilbage på dette fad.
             if (hylde != null) {
                 hylde.setFad(this);
             }

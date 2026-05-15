@@ -54,8 +54,7 @@ public class Destillering {
                 ", rygemateriale='" + rygemateriale + '\'' +
                 ", kornsort=" + kornsort +
                 ", mængdeDestillat=" + mængdeDestillat +
-                ", medarbejder=" + medarbejder +
-                '}';
+                ", medarbejder=" + medarbejder;
     }
 
     public LocalDate getDato() {

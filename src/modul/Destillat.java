@@ -21,19 +21,15 @@ public class Destillat {
 
     @Override
     public String toString() {
-        String info = "Dato: " + påfyldningsDato + " | " + alkoholProcent + "%";
+        String liter = (mængdeDestillat != null) ? mængdeDestillat.getMængdeLiter() + " L" : "Ukendt mængde";
+        String destilleringInfo = "";
 
-        if (mængdeDestillat != null) {
-            info += " | Liter: " + mængdeDestillat.getMængdeLiter();
-
-            if (!mængdeDestillat.getDestilleringList().isEmpty()) {
-                Destillering destillering = mængdeDestillat.getDestilleringList().getFirst();
-                info += " | Destillering: NM-" + destillering.getNewMakeNr() +
-                        ", " + destillering.getKornsort() +
-                        ", Maltbatch: " + destillering.getMaltbatch();
-            }
+        if (mængdeDestillat != null && !mængdeDestillat.getDestilleringList().isEmpty()) {
+            Destillering d = mængdeDestillat.getDestilleringList().getFirst();
+            destilleringInfo = " | NM-" + d.getNewMakeNr() + ", " + d.getKornsort() + ", Batch: " + d.getMaltbatch();
         }
-        return info;
+
+        return "Destillat | Dato: " + påfyldningsDato + " | Alkohol: " + alkoholProcent + "% | Mængde: " + liter + destilleringInfo;
     }
 
     public double getAlkoholProcent() {
