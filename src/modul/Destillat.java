@@ -81,4 +81,8 @@ public class Destillat {
             }
         }
     }
+
+    public double getMængdeLiter(){
+        return mængdeDestillat.getMængdeLiter();
+    }
 }

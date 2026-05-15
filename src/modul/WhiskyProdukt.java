@@ -47,12 +47,24 @@ public class WhiskyProdukt {
         }
     }
 
+    //Opretter det givne antal Flaske-objekter
+    public List<Flaske> createFlasker(LocalDate tapningsDato, double volumen, Status status) {
+        List<Flaske> flasker = new ArrayList<>();
+        int antal = beregnAntalFlasker(volumen);
+        for (int i = 1; i <= antal; i++) {
+            Flaske flaske = new Flaske(i, tapningsDato, volumen, status, this);
+            flasker.add(flaske);
+            flaskeList.add(flaske);
+        }
+        return flasker;
+    }
 
-    //Opretter det givne antal Flaaske-objekter men er ikke færdig
-    public Flaske createFlaske(int flaskeNr, LocalDate tapningsDato, double volumen, Status status, int antal) {
-        Flaske flaske = new Flaske(flaskeNr, tapningsDato, volumen, status, this);
-        flaskeList.add(flaske);
-        return flaske;
+    private int beregnAntalFlasker(double volumenPrFlaske) {
+        return (int) (this.getMængdeLiter()/volumenPrFlaske);
+    }
+
+    private double getMængdeLiter(){
+        return destillat.getMængdeLiter();
     }
 
     public Destillat getDestillat() {

@@ -20,7 +20,7 @@ public class StartVidue extends Application {
     private Controller controller;
 
     @Override
-    public void init() throws Exception{
+    public void init() throws Exception {
         Istorage storage = new Storage();
         controller = new Controller(storage);
         controller.createSomeObjects();
@@ -96,7 +96,7 @@ public class StartVidue extends Application {
         tabRegisterPaafyldningAfFad.setContent(registerPaafyldningAfFadVindue);
 
         tabRegisterPaafyldningAfFad.setOnSelectionChanged(event -> {
-            if (tabRegisterPaafyldningAfFad.isSelected()){
+            if (tabRegisterPaafyldningAfFad.isSelected()) {
                 registerPaafyldningAfFadVindue.updateData();
             }
         });
@@ -106,16 +106,13 @@ public class StartVidue extends Application {
         tabFadLager.setContent(seFadLagerVindue);
 
         tabFadLager.setOnSelectionChanged(event -> {
-            if (tabFadLager.isSelected()){
+            if (tabFadLager.isSelected()) {
                 seFadLagerVindue.updateData();
             }
         });
 
         Tab tabProduktLager = new Tab("Se produkt lager");
         tabProduktLager.setContent(new SeProduktLagerVindue());
-
-
-
 
 
         tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabRegisterFadplacering, tanRegisterDestillat, tabRegisterPaafyldningAfFad, tabFadLager, tabProduktLager);

@@ -33,7 +33,6 @@ public class RegisterDestillatVindue extends GridPane {
 
         overskrift(pane);
 
-
         textAndDropdown(pane);
 
     }
