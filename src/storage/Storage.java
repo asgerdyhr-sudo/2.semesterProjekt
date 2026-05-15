@@ -1,5 +1,6 @@
 package storage;
 
+import com.sun.javafx.collections.ElementObservableListDecorator;
 import modul.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Storage implements Istorage {
     List<Medarbejder> medarbejderList = new ArrayList<>();
     List<MængdeDestillat> mængdeDestillatList = new ArrayList<>();
     List<Leverandør> leverandørList = new ArrayList<>();
+    List<WhiskyProdukt> whiskyProduktList = new ArrayList<>();
 
     @Override
     public void addDestillering(Destillering destillering) {
@@ -167,5 +169,19 @@ public class Storage implements Istorage {
     @Override
     public List<Leverandør> getAllLeverandør() {
         return leverandørList;
+    }
+
+    @Override
+    public void addWhiskyProdukt(WhiskyProdukt whiskyProdukt) {
+        if (!whiskyProduktList.contains(whiskyProdukt)) {
+            whiskyProduktList.add(whiskyProdukt);
+        }
+    }
+
+    @Override
+    public void removeWhiskyProdukt(WhiskyProdukt whiskyProdukt) {
+        if (whiskyProduktList.contains(whiskyProdukt)) {
+            whiskyProduktList.remove(whiskyProdukt);
+        }
     }
 }

@@ -54,4 +54,7 @@ public interface Istorage {
 
     List<Leverandør> getAllLeverandør();
 
+    void addWhiskyProdukt(WhiskyProdukt whiskyProdukt);
+
+    void removeWhiskyProdukt(WhiskyProdukt whiskyProdukt);
 }

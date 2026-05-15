@@ -56,6 +56,12 @@ public class Controller {
         return leverandør;
     }
 
+    public WhiskyProdukt createWhiskyProdukt(String navn, double alkoholProcent, String whiskyType, String beskrivelse, Destillat destillat) {
+        WhiskyProdukt whiskyProdukt = new WhiskyProdukt(navn, alkoholProcent, whiskyType, beskrivelse, destillat);
+        storage.addWhiskyProdukt(whiskyProdukt);
+        return whiskyProdukt;
+    }
+
     public List<Medarbejder> getAllMedarbejder() {
         return storage.getAllMedarbejder();
     }
@@ -99,12 +105,13 @@ public class Controller {
         createLeverandør("American Oak Inc.", "USA");
 
         MængdeDestillat md1 = createMængdeDestillat(500.0);
-        createDestillering(LocalDate.now(), 65.0, 1, "MaltBatch1", "ingen", Kornsort.STAIRWAY, md1, m1);
-        createDestillat(63.5, LocalDate.now(), md1, m1);
+        createDestillering(LocalDate.of(2019,2,12), 65.0, 1, "MaltBatch1", "ingen", Kornsort.STAIRWAY, md1, m1);
+        createDestillat(63.5, LocalDate.of(2024,12,20), md1, m1);
 
         createFad("Egetræ", 250, "Sherry", l1);
-        createFad("Bark",500,"Burbon",l1);
+        createFad("Bark", 500, "Burbon", l1);
 
         createLager("Hovedlager", "Bygning A", 5, 10);
+        createLager("Ekstra lager", "Gårdspladsen", 5, 10);
     }
 }

@@ -1,5 +1,6 @@
 package modul;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,13 @@ public class Fad {
         this.leverandør = leverandør;
     }
 
-    @Override
-    public String toString() {
-        return "| Fad " + fadNr + " (" + fadType + " - " + størrelseLiter + "L)";
+    public boolean klarTilTapning() {
+        for (Destillat destillat : destilatList) {
+            if (destillat.klarTilAftapning()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setHylde(Hylde hylde) {
@@ -103,5 +108,10 @@ public class Fad {
 
     public Leverandør getLeverandør() {
         return leverandør;
+    }
+
+    @Override
+    public String toString() {
+        return "| Fad " + fadNr + " (" + fadType + " - " + størrelseLiter + "L)";
     }
 }

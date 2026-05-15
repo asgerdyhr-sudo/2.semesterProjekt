@@ -170,6 +170,9 @@ public class OpretDestilleringVindue extends GridPane {
                 controller.createDestillering(dpDato.getValue(), alkoholProcent, newMakeNummer, cbMaltbatch.getValue(),
                         rygemateriale, cbKornsort.getValue(), mængdeDestillat, cbMedarbejder.getValue());
 
+                //Creat Destillat
+                controller.createDestillat(alkoholProcent, dpDato.getValue(),mængdeDestillat,cbMedarbejder.getValue());
+
                 showInfo("Succes", "Destillering oprettet");
 
                 // Skudsikker nulstilling

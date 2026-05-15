@@ -1,6 +1,9 @@
 package modul;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Destillat {
     private final double alkoholProcent;
@@ -8,6 +11,7 @@ public class Destillat {
     private final MængdeDestillat mængdeDestillat;
     private Fad fad;
     private final Medarbejder medarbejder;
+    private final List<WhiskyProdukt> whiskyProduktList = new ArrayList<>();
 
     public Destillat(double alkoholProcent, LocalDate påfyldningsDato, MængdeDestillat mængdeDestillat, Medarbejder medarbejder) {
         this.alkoholProcent = alkoholProcent;
@@ -17,6 +21,14 @@ public class Destillat {
             mængdeDestillat.addDestillat(this);
         }
         this.medarbejder = medarbejder;
+    }
+
+    public long beregnAlder() {
+        return ChronoUnit.DAYS.between(påfyldningsDato, LocalDate.now());
+    }
+
+    public boolean klarTilAftapning() {
+        return beregnAlder() >= 365 * 12;
     }
 
     @Override
@@ -50,6 +62,10 @@ public class Destillat {
 
     public Medarbejder getMedarbejder() {
         return medarbejder;
+    }
+
+    public List<WhiskyProdukt> getWhiskyProduktList() {
+        return new ArrayList<>(whiskyProduktList);
     }
 
     //Ikke triviel metode 1

@@ -38,6 +38,10 @@ public class RegisterPaafyldningAfFadVindue extends GridPane {
             cbFad.getItems().clear();
             cbFad.getItems().addAll(controller.getAllFad());
         }
+        if (lvDestilat != null){
+            lvDestilat.getItems().clear();
+            lvDestilat.getItems().addAll(controller.getAllDestillat());
+        }
     }
 
     private static void overskrift(GridPane pane) {
