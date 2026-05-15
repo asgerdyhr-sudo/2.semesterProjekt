@@ -12,6 +12,11 @@ public class MængdeDestillat {
         this.mængdeLiter = mængdeLiter;
     }
 
+    @Override
+    public String toString() {
+        return mængdeLiter + "L";
+    }
+
     public void addDestillat (Destillat destillat){
         if (!destillatList.contains(destillat)){
             destillatList.add(destillat);

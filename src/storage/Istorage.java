@@ -1,9 +1,7 @@
 package storage;
 
-import javafx.animation.FadeTransition;
 import modul.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface Istorage {

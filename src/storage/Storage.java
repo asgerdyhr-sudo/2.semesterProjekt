@@ -1,6 +1,5 @@
 package storage;
 
-import com.sun.javafx.collections.ElementObservableListDecorator;
 import modul.*;
 
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class Storage implements Istorage {
     @Override
     public void removeMedarbejder(Medarbejder medarbejder) {
         if (medarbejderList.contains(medarbejder)) {
-            medarbejderList.add(medarbejder);
+            medarbejderList.remove(medarbejder);
         }
     }
 

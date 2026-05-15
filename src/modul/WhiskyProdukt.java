@@ -47,6 +47,7 @@ public class WhiskyProdukt {
         }
     }
 
+
     //Opretter det givne antal Flaaske-objekter men er ikke færdig
     public Flaske createFlaske(int flaskeNr, LocalDate tapningsDato, double volumen, Status status, int antal) {
         Flaske flaske = new Flaske(flaskeNr, tapningsDato, volumen, status, this);

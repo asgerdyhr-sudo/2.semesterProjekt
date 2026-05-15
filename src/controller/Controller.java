@@ -82,6 +82,8 @@ public class Controller {
         return storage.getAllDestilat();
     }
 
+    public List<Destillering> getAllDestillering(){return storage.getAllDestilleringer();}
+
     public void registerFadPlacering(Fad fad, Hylde hylde) {
         if (hylde.getFad() != null) {
             throw new IllegalArgumentException("Hylden er allerede optaget af et andet fad.");

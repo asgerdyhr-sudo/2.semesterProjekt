@@ -49,12 +49,12 @@ public class Destillering {
     public String toString() {
         return "Destillering\n" +
                 "| Dato: " + dato + " | " + "Alkoholprocent: " + alkoholProcent + " | " +
-                ", newMakeNr: NM-" + newMakeNr +
-                ", maltbatch='" + maltbatch + '\'' +
-                ", rygemateriale='" + rygemateriale + '\'' +
-                ", kornsort=" + kornsort +
-                ", mængdeDestillat=" + mængdeDestillat +
-                ", medarbejder=" + medarbejder;
+                "NewMakeNr: NM-" + newMakeNr + " | " +
+                "Mængde: " + mængdeDestillat + " | " +
+                "Maltbatch: " + maltbatch + " | \n" +
+                "| Rygemateriale: " + rygemateriale + " | " +
+                "Kornsort: " + kornsort + " | " +
+                "Medarbejder: " + medarbejder + " |";
     }
 
     public LocalDate getDato() {

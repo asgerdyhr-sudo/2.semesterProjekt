@@ -32,13 +32,19 @@ public class OpretFadVindue extends GridPane {
         opretFadButton(pane);
     }
 
+    public void updateData() {
+        if (cbLeverandør != null) {
+            cbLeverandør.getItems().setAll(controller.getAllLeverandør());
+            cbLeverandør.getSelectionModel().clearSelection();
+        }
+    }
+
     private void overskrift(GridPane pane) {
         Label lblTitle = new Label("Opret fad");
         lblTitle.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         pane.add(lblTitle, 0, 0);
         GridPane.setColumnSpan(lblTitle, 2);
     }
-
     private void textAndLabels(GridPane pane) {
         // Skriv fad type (string)
         txfFadType = new TextField();
@@ -84,6 +90,7 @@ public class OpretFadVindue extends GridPane {
         pane.add(lblLeverandør, 1, 4);
     }
     //tjek linje 116
+
     private void opretFadButton(GridPane pane) {
         Button btnOpretFad = new Button("Opret fad");
         btnOpretFad.setFont(Font.font("Arial", FontWeight.BOLD, 12));
@@ -144,4 +151,6 @@ public class OpretFadVindue extends GridPane {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 }
+

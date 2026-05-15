@@ -35,12 +35,12 @@ public class RegisterPaafyldningAfFadVindue extends GridPane {
 
     public void updateData(){
         if (cbFad != null){
-            cbFad.getItems().clear();
-            cbFad.getItems().addAll(controller.getAllFad());
+            cbFad.getItems().setAll(controller.getAllFad());
+            cbFad.getSelectionModel().clearSelection();
         }
         if (lvDestilat != null){
-            lvDestilat.getItems().clear();
-            lvDestilat.getItems().addAll(controller.getAllDestillat());
+            lvDestilat.getItems().setAll(controller.getAllDestillat());
+            lvDestilat.getSelectionModel().clearSelection();
         }
     }
 

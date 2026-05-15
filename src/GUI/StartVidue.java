@@ -32,7 +32,7 @@ public class StartVidue extends Application {
         BorderPane pane = new BorderPane();
         initContent(pane);
 
-        Scene scene = new Scene(pane, 850, 550);
+        Scene scene = new Scene(pane, 900, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -51,10 +51,22 @@ public class StartVidue extends Application {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         Tab tabDestillering = new Tab("Opret destillering");
-        tabDestillering.setContent(new OpretDestilleringVindue(controller));
+        OpretDestilleringVindue opretDestilleringVindue = new OpretDestilleringVindue(controller);
+        tabDestillering.setContent(opretDestilleringVindue);
+        tabDestillering.setOnSelectionChanged(event -> {
+            if (tabDestillering.isSelected()) {
+                opretDestilleringVindue.updateData();
+            }
+        });
 
         Tab tabOpretFad = new Tab("Opret fad");
-        tabOpretFad.setContent(new OpretFadVindue(controller));
+        OpretFadVindue opretFadVindue = new OpretFadVindue(controller);
+        tabOpretFad.setContent(opretFadVindue);
+        tabOpretFad.setOnSelectionChanged(event -> {
+            if (tabOpretFad.isSelected()) {
+                opretFadVindue.updateData();
+            }
+        });
 
         Tab tabOpretLager = new Tab("Opret lager");
         tabOpretLager.setContent(new OpretLagerVindue(controller));
@@ -66,6 +78,16 @@ public class StartVidue extends Application {
         tabRegisterFadplacering.setOnSelectionChanged(event -> {
             if (tabRegisterFadplacering.isSelected()) {
                 registerFadplaceringVindue.updateData();
+            }
+        });
+
+        Tab tanRegisterDestillat = new Tab("Register destillat");
+        RegisterDestillatVindue registerDestillatVindue = new RegisterDestillatVindue(controller);
+        tanRegisterDestillat.setContent(registerDestillatVindue);
+
+        tanRegisterDestillat.setOnSelectionChanged(event -> {
+            if (tanRegisterDestillat.isSelected()) {
+                registerDestillatVindue.updateData();
             }
         });
 
@@ -96,7 +118,7 @@ public class StartVidue extends Application {
 
 
 
-        tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabRegisterFadplacering, tabRegisterPaafyldningAfFad, tabFadLager, tabProduktLager);
+        tabPane.getTabs().addAll(tabDestillering, tabOpretFad, tabOpretLager, tabRegisterFadplacering, tanRegisterDestillat, tabRegisterPaafyldningAfFad, tabFadLager, tabProduktLager);
 
         pane.setCenter(tabPane);
     }

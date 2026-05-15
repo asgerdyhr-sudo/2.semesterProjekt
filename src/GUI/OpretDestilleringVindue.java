@@ -1,12 +1,9 @@
 package GUI;
 
 import controller.Controller;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import modul.Kornsort;
@@ -43,6 +40,13 @@ public class OpretDestilleringVindue extends GridPane {
         opretDestilleringButton(pane);
     }
 
+    public void updateData() {
+        if (cbMedarbejder != null) {
+            cbMedarbejder.getItems().setAll(controller.getAllMedarbejder());
+            cbMedarbejder.getSelectionModel().clearSelection();
+        }
+    }
+
     private void overksrift(GridPane pane) {
         Label lblTitle = new Label("Opret destillering");
         lblTitle.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -53,6 +57,7 @@ public class OpretDestilleringVindue extends GridPane {
     private void textAndLabels(GridPane pane) {
         //vælg dato - DatePicer
         dpDato = new DatePicker();
+        dpDato.setPromptText("Vælg destillerings dato");
         dpDato.setPrefWidth(500);
         pane.add(dpDato, 0, 1);
 
@@ -170,9 +175,6 @@ public class OpretDestilleringVindue extends GridPane {
                 controller.createDestillering(dpDato.getValue(), alkoholProcent, newMakeNummer, cbMaltbatch.getValue(),
                         rygemateriale, cbKornsort.getValue(), mængdeDestillat, cbMedarbejder.getValue());
 
-                //Creat Destillat
-                controller.createDestillat(alkoholProcent, dpDato.getValue(),mængdeDestillat,cbMedarbejder.getValue());
-
                 showInfo("Succes", "Destillering oprettet");
 
                 // Skudsikker nulstilling
@@ -189,6 +191,7 @@ public class OpretDestilleringVindue extends GridPane {
 
         pane.add(bntOpretDestillering, 1, 10);
     }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

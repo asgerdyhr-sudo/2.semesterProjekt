@@ -40,12 +40,24 @@ public class RegisterFadplaceringVindue extends GridPane {
 
     public void updateData() {
         if (cbFad != null) {
-            cbFad.getItems().clear();
-            cbFad.getItems().addAll(controller.getAllFad());
+            cbFad.getItems().setAll(controller.getAllFad());
+            cbFad.getSelectionModel().clearSelection();
         }
         if (cbLager != null) {
-            cbLager.getItems().clear();
-            cbLager.getItems().addAll(controller.getAllLager());
+            cbLager.getItems().setAll(controller.getAllLager());
+            cbLager.getSelectionModel().clearSelection();
+        }
+
+        // Når grunddata genindlæses, nulstiller vi også afhængige dropdowns
+        if (cbReol != null) {
+            cbReol.getItems().clear();
+            cbReol.getSelectionModel().clearSelection();
+            cbReol.setDisable(true);
+        }
+        if (cbHylde != null) {
+            cbHylde.getItems().clear();
+            cbHylde.getSelectionModel().clearSelection();
+            cbHylde.setDisable(true);
         }
     }
 
