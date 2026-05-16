@@ -48,7 +48,7 @@ public class WhiskyProdukt {
     }
 
     //Opretter det givne antal Flaske-objekter
-    public List<Flaske> createFlasker(LocalDate tapningsDato, double volumen, Status status) {
+    public List<Flaske> fyldPåFlasker(LocalDate tapningsDato, double volumen, Status status) {
         List<Flaske> flasker = new ArrayList<>();
         int antal = beregnAntalFlasker(volumen);
         for (int i = 1; i <= antal; i++) {
@@ -60,10 +60,10 @@ public class WhiskyProdukt {
     }
 
     private int beregnAntalFlasker(double volumenPrFlaske) {
-        return (int) (this.getMængdeLiter()/volumenPrFlaske);
+        return (int) (this.getMængdeLiter() / volumenPrFlaske);
     }
 
-    private double getMængdeLiter(){
+    private double getMængdeLiter() {
         return destillat.getMængdeLiter();
     }
 
