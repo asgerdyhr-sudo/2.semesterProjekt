@@ -91,7 +91,7 @@ public class Controller {
         fad.setHylde(hylde);
     }
 
-    public void registrerPåfyldning(Destillat destillat, Fad fad) {
+    public void registrerFadPåfyldning(Destillat destillat, Fad fad) {
         destillat.setFad(fad);
     }
 

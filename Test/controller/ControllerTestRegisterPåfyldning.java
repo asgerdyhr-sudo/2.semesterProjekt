@@ -33,30 +33,30 @@ class ControllerTestRegisterPåfyldning {
     }
 
     @Test
-    void TC1_registrerPåfyldning_koblingSkabesFraFadTilDestillat() {
+    void TC1_registrerFadPåfyldning_koblingSkabesFraFadTilDestillat() {
         //Arrange
         //Act
-        controller.registrerPåfyldning(destillat, fad);
+        controller.registrerFadPåfyldning(destillat, fad);
 
         //Assert
         assertTrue(fad.getDestilatList().contains(destillat));
     }
 
     @Test
-    void TC2_registrerPåfyldning_koblingSkabesFraDestillatTilFad() {
+    void TC2_registrerFadPåfyldning_koblingSkabesFraDestillatTilFad() {
         //Arrange
         //Act
-        controller.registrerPåfyldning(destillat, fad);
+        controller.registrerFadPåfyldning(destillat, fad);
 
         //Assert
         assertEquals(fad, destillat.getFad());
     }
 
     @Test
-    void TC3_registrerPåfyldning_fadGemmesIFyldteFadeStorage() {
+    void TC3_registrerFadPåfyldning_fadGemmesIFyldteFadeStorage() {
         //Arrange
         //Act
-        controller.registrerPåfyldning(destillat, fad);
+        controller.registrerFadPåfyldning(destillat, fad);
 
         //Assert
         verify(storage).addFad(fad);

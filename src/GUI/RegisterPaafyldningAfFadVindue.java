@@ -96,7 +96,7 @@ public class RegisterPaafyldningAfFadVindue extends GridPane {
 
             try {
                 // Kalder controller metoden, der forbinder destillat og fad
-                controller.registrerPåfyldning(selectedDestillat, selectedFad);
+                controller.registrerFadPåfyldning(selectedDestillat, selectedFad);
 
                 showInfo("Succes", "Påfyldningen blev registreret succesfuldt.");
 
