@@ -38,7 +38,7 @@ public class Fad {
         this.leverandør = leverandør;
     }
 
-    public boolean klarTilTapning() {
+    public boolean erFærdigLagret() {
         for (Destillat destillat : destilatList) {
             if (destillat.klarTilAftapning()) {
                 return true;
