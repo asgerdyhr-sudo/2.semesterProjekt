@@ -28,7 +28,7 @@ public class Destillat {
     }
 
     public boolean klarTilAftapning() {
-        return beregnAlder() >= 365 * 12;
+        return beregnAlder() >= 365 * 3;
     }
 
     @Override
